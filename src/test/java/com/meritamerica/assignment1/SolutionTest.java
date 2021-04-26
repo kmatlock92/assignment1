@@ -34,132 +34,91 @@
  */
 package com.meritamerica.assignment1;
 
+
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
-import static org.junit.Assert.*;
 
-public class SolutionTest {
 
-    @Test
-    public void testCreateAccountHolder(){
-        AccountHolder accountHolder = new AccountHolder(
-        	"Sadiq",
-        	"",
-        	"Manji",
-        	"123456789",
-        	100.0,
-        	1000.0);
-        
-        assertEquals(100.0, accountHolder.getCheckingAccount().getBalance(), 0);
-        assertEquals(0.0001, accountHolder.getCheckingAccount().getInterestRate(), 0);
-        assertEquals(1000.0, accountHolder.getSavingsAccount().getBalance(), 0);
-        assertEquals(0.01, accountHolder.getSavingsAccount().getInterestRate(), 0);
-    }
+public class SolutionTest
+{
 
-    @Test
-    public void testDepositPositiveAmountInCheckingAccount(){
-        AccountHolder accountHolder = new AccountHolder(
-        	"Sadiq",
-        	"",
-        	"Manji",
-        	"123456789",
-        	100.0,
-        	1000.0);
-        
-        assertEquals(true, accountHolder.getCheckingAccount().deposit(500.0));
-    }
+  @Test
+  public void testCreateAccountHolder()
+  {
+    AccountHolder accountHolder = new AccountHolder("Sadiq", "", "Manji", "123456789", 100.0, 1000.0);
 
-    @Test
-    public void testDepositNegativeAmountInCheckingAccount(){
-        AccountHolder accountHolder = new AccountHolder(
-        	"Sadiq",
-        	"",
-        	"Manji",
-        	"123456789",
-        	100.0,
-        	1000.0);
-        
-        assertEquals(false, accountHolder.getCheckingAccount().deposit(-500.0));
-    }
+    assertEquals(100.0, accountHolder.getCheckingAccount().getBalance(), 0);
+    assertEquals(0.0001, accountHolder.getCheckingAccount().getInterestRate(), 0);
+    assertEquals(1000.0, accountHolder.getSavingsAccount().getBalance(), 0);
+    assertEquals(0.01, accountHolder.getSavingsAccount().getInterestRate(), 0);
+  }
 
-    @Test
-    public void testDepositPositiveAmountInSavingsAccount(){
-        AccountHolder accountHolder = new AccountHolder(
-        	"Sadiq",
-        	"",
-        	"Manji",
-        	"123456789",
-        	100.0,
-        	1000.0);
-        
-        assertEquals(true, accountHolder.getSavingsAccount().deposit(500.0));
-    }
+  @Test
+  public void testDepositPositiveAmountInCheckingAccount()
+  {
+    AccountHolder accountHolder = new AccountHolder("Sadiq", "", "Manji", "123456789", 100.0, 1000.0);
 
-    @Test
-    public void testDepositNegativeAmountInSavingsAccount(){
-        AccountHolder accountHolder = new AccountHolder(
-        	"Sadiq",
-        	"",
-        	"Manji",
-        	"123456789",
-        	100.0,
-        	1000.0);
-        
-        assertEquals(false, accountHolder.getSavingsAccount().deposit(-500.0));
-    }
+    assertEquals(true, accountHolder.getCheckingAccount().deposit(500.0));
+  }
 
-    @Test
-    public void testWithdrawAmountExceedingBalanceInCheckingAccount(){
-        AccountHolder accountHolder = new AccountHolder(
-        	"Sadiq",
-        	"",
-        	"Manji",
-        	"123456789",
-        	100.0,
-        	100.0);
-        
-        assertEquals(false, accountHolder.getCheckingAccount().withdraw(500.0));
-    }
+  @Test
+  public void testDepositNegativeAmountInCheckingAccount()
+  {
+    AccountHolder accountHolder = new AccountHolder("Sadiq", "", "Manji", "123456789", 100.0, 1000.0);
 
-    @Test
-    public void testWithdrawAmountExceedingBalanceInSavingsAccount(){
-        AccountHolder accountHolder = new AccountHolder(
-        	"Sadiq",
-        	"",
-        	"Manji",
-        	"123456789",
-        	100.0,
-        	100.0);
-        
-        assertEquals(false, accountHolder.getSavingsAccount().withdraw(500.0));
-    }
+    assertEquals(false, accountHolder.getCheckingAccount().deposit(-500.0));
+  }
 
-    @Test
-    public void testFutureValueInSavingsAccount(){
-        AccountHolder accountHolder = new AccountHolder(
-        	"Sadiq",
-        	"",
-        	"Manji",
-        	"123456789",
-        	100.0,
-        	100.0);
+  @Test
+  public void testDepositPositiveAmountInSavingsAccount()
+  {
+    AccountHolder accountHolder = new AccountHolder("Sadiq", "", "Manji", "123456789", 100.0, 1000.0);
 
-        double fv = 100.0 * Math.pow(1 + 0.01, 3);
-        
-        assertEquals(fv, accountHolder.getSavingsAccount().futureValue(3), 0);
-    }
+    assertEquals(true, accountHolder.getSavingsAccount().deposit(500.0));
+  }
 
-    @Test
-    public void testFutureValueInCheckingAccount(){
-        AccountHolder accountHolder = new AccountHolder(
-        	"Sadiq",
-        	"",
-        	"Manji",
-        	"123456789",
-        	100.0,
-        	100.0);
+  @Test
+  public void testDepositNegativeAmountInSavingsAccount()
+  {
+    AccountHolder accountHolder = new AccountHolder("Sadiq", "", "Manji", "123456789", 100.0, 1000.0);
 
-        double fv = 100.0 * Math.pow(1 + 0.0001, 3);
-        
-        assertEquals(fv, accountHolder.getCheckingAccount().futureValue(3), 0);
-    }
+    assertEquals(false, accountHolder.getSavingsAccount().deposit(-500.0));
+  }
+
+  @Test
+  public void testWithdrawAmountExceedingBalanceInCheckingAccount()
+  {
+    AccountHolder accountHolder = new AccountHolder("Sadiq", "", "Manji", "123456789", 100.0, 100.0);
+
+    assertEquals(false, accountHolder.getCheckingAccount().withdraw(500.0));
+  }
+
+  @Test
+  public void testWithdrawAmountExceedingBalanceInSavingsAccount()
+  {
+    AccountHolder accountHolder = new AccountHolder("Sadiq", "", "Manji", "123456789", 100.0, 100.0);
+
+    assertEquals(false, accountHolder.getSavingsAccount().withdraw(500.0));
+  }
+
+  @Test
+  public void testFutureValueInSavingsAccount()
+  {
+    AccountHolder accountHolder = new AccountHolder("Sadiq", "", "Manji", "123456789", 100.0, 100.0);
+
+    double fv = 100.0 * Math.pow(1 + 0.01, 3);
+
+    assertEquals(fv, accountHolder.getSavingsAccount().futureValue(3), 0);
+  }
+
+  @Test
+  public void testFutureValueInCheckingAccount()
+  {
+    AccountHolder accountHolder = new AccountHolder("Sadiq", "", "Manji", "123456789", 100.0, 100.0);
+
+    double fv = 100.0 * Math.pow(1 + 0.0001, 3);
+
+    assertEquals(fv, accountHolder.getCheckingAccount().futureValue(3), 0);
+  }
 }
